@@ -13,6 +13,11 @@
 - axios 文件地址 /src/utils/http.js 这个文件需要认真看下哦。
 - 使用了 mockjs 拦截模拟了接口数据
 
+## store 
+对其也进行了拆分
+
+## router
+本来也要拆分的，现在要做的项目很小，就懒得拆了。哈哈。
  
 ```
 ├── README.md
