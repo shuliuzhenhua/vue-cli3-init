@@ -60,8 +60,10 @@ const http = {
   },
   get(url, params) {
     return new Promise((resolve, reject) => {
-      instance(url, params)
-        .then(resolve)
+      instance.request({
+        url,
+        params
+      }).then(resolve)
         .catch(reject);
     });
   },
