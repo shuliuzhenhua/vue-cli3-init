@@ -26,6 +26,8 @@
     "@vue/cli-plugin-babel": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
     "babel-plugin-import": "^1.9.1",
+    "postcss": "^7.0.5",
+    "postcss-theme-variables": "^1.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.5.17"

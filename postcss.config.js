@@ -16,6 +16,20 @@ module.exports = {
       preset: "advanced",
       autoprefixer: false,
       "postcss-zindex": false
+    },
+    "postcss-easy-import": {
+      extensions: ['pcss', 'css']
+    },
+    "postcss-theme-variables": {
+      vars: {
+        'black': '#000'
+      },
+      prefix: '$'
+    },
+    "precss": {},
+    "postcss-calc": {},
+    "autoprefixer": {
+      browsers: ['Android >= 4.0', 'iOS >= 7']
     }
   }
 }
