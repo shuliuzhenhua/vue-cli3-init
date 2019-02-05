@@ -31,8 +31,10 @@ instance.interceptors.response.use(
     if (err.response.data && err.response.data.msg) {
       // 3、普通异常，比如参数错误或者其他，直接弹出错误就可以的
       // 这里可以用一个弹出提示
-      Dialog.alert({
-        message: err.response.data.msg,
+      return Dialog.alert({
+        message: err.response.data.msg
+      }).then(() => {
+        return Promise.reject(err.response.data)
       });
     }
 
@@ -42,57 +44,21 @@ instance.interceptors.response.use(
 );
 
 const http = {
-  post(url, data) {
-    return new Promise((resolve, reject) => {
-      instance
-        .post(url, data)
-        .then(resolve)
-        .catch(reject);
-    });
+  request (options) {
+    return instance(options)
   },
-  delete(url) {
-    return new Promise((resolve, reject) => {
-      instance
-        .delete(url)
-        .then(resolve)
-        .catch(reject);
-    });
+  get (url, params) {
+    return instance.get(url, { params })
   },
-  get(url, params) {
-    return new Promise((resolve, reject) => {
-      instance.request({
-        url,
-        params
-      }).then(resolve)
-        .catch(reject);
-    });
+  post (url, data) {
+    return instance.post(url, data)
   },
-  put(url, data) {
-    return new Promise((resolve, reject) => {
-      instance
-        .put(url, data)
-        .then(resolve)
-        .catch(reject);
-    });
+  put (url, data) {
+    return instance.put(url, data)
   },
-  /**
-   * 发送普通的 axios 请求不设置拦截器
-   * @param options
-   * @returns {Promise}
-   */
-  request(options) {
-    return new Promise((resolve, reject) => {
-      // 创建实例
-      const instance = axios.create({
-        headers: {
-          token: localStorage.getItem('token'), // 设置header 默认值，根据自己情况而定
-        },
-      });
-      instance
-        .request(options)
-        .then(resolve)
-        .catch(reject);
-    });
-  },
-};
-export default http;
+  delete (url, data) {
+    return instance.delete(url, data)
+  }
+}
+
+export default http
